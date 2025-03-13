@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from .models import Patient, Doctor, Appointment, Specialty
 from .serializers import PatientSerializer, DoctorSerializer, AppointmentSerializer, SpecialtiesSerializer
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
@@ -11,6 +13,7 @@ class DoctorViewSet(viewsets.ModelViewSet):
     serializer_class = DoctorSerializer
 
 class AppointmentViewSet(viewsets.ModelViewSet):
+    authentication_classes = []
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
