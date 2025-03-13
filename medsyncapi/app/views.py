@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Patient, Doctor, Appointment, Specialties
+from .models import Patient, Doctor, Appointment, Specialty
 from .serializers import PatientSerializer, DoctorSerializer, AppointmentSerializer, SpecialtiesSerializer
 
 class PatientViewSet(viewsets.ModelViewSet):
@@ -15,5 +15,5 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     serializer_class = AppointmentSerializer
 
 class SpecialtiesViewSet(viewsets.ModelViewSet):
-    queryset = Specialties.objects.all()
+    queryset = Specialty.objects.all()
     serializer_class = SpecialtiesSerializer

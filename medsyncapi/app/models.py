@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Person(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -15,8 +13,16 @@ class Patient(Person):
     age = models.IntegerField()
     cpf = models.CharField(max_length=11)
 
+class Specialty(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
 class Doctor(Person):
     crm = models.CharField(max_length=7)
+    specialties = models.ManyToManyField(Specialty, related_name="doctors")
+    def __str__(self):
+        return self.name
 
 class Appointment(models.Model):
     date = models.DateTimeField()
@@ -27,10 +33,4 @@ class Appointment(models.Model):
     def __str__(self):
         return f'{self.patient.name} - {self.doctor.name}'
 
-class Specialties(models.Model):
-    name = models.CharField(max_length=100)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
     
