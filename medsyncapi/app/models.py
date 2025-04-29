@@ -5,6 +5,8 @@ class Person(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=11)
     address = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    birth_date = models.DateField()
 
     class Meta:
         abstract = True
